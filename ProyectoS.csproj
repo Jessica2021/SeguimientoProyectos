@@ -2443,6 +2443,9 @@
     <Compile Include="Models\Usuarios.cs">
       <DependentUpon>Proyectos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_ListaCompañias.cs">
+      <DependentUpon>Proyectos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\vw_ListaHistorias.cs">
       <DependentUpon>Proyectos.tt</DependentUpon>
     </Compile>
