@@ -1,0 +1,307 @@
+﻿* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'segoeui';
+    src: url('../fonts/Segoe UI/segoeui.ttf') format('truetype'), url('../fonts/Segoe UI/segoeuib.ttf') format('truetype'), url('../fonts/Segoe UI/segoeuii.ttf') format('truetype'), url('../fonts/Segoe UI/segoeuil.ttf') format('truetype'), url('../fonts/Segoe UI/segoeuisl.ttf') format('truetype'), url('../fonts/Segoe UI/segoeuiz.ttf') format('truetype'), url('../fonts/Segoe UI/seguibl.ttf') format('truetype'), url('../fonts/Segoe UI/seguibli.ttf') format('truetype'), url('../fonts/Segoe UI/seguili.ttf') format('truetype'), url('../fonts/Segoe UI/seguisb.ttf') format('truetype'), url('../fonts/Segoe UI/seguisbi.ttf') format('truetype'), url('../fonts/Segoe UI/seguisli.ttf') format('truetype');
+}
+
+body {
+    font-family: 'segoeui','Segoe UI ','Segoe UI Web ','Segoe UI Web Regular','Segoe UI','Segoe UI Symbol','HelveticaNeue-Light','Helvetica Neue','Arial,sans-serif' !important;
+}
+
+#Container {
+    background: #fff;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 30%;
+    max-width: 500px;
+    max-height: 500px;
+    -webkit-filter: opacity(80%);
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 364px;
+    min-width: 320px;
+    max-width: 412px;
+    width: calc(100% - 40px);
+}
+
+    #Container .LogoTipo img {
+        width: 55%;
+    }
+
+    #Container .LogoTipo {
+        padding-bottom: 15px;
+        float: left;
+        padding-left: 0px !important;
+    }
+
+    #Container .Titulo h3 {
+        font-weight: 300;
+        color: #090707;
+    }
+
+    #Container form input[type=text], input[type=password] {
+        border-radius: 0px;
+        padding: 6px 10px;
+        border: 1px solid rgba(0,0,0,.6);
+        height: 36px;
+        outline: none;
+        box-shadow: none !important;
+        border: 1px solid rgba(65, 61, 61, 0.14) !important;
+    }
+
+        #Container form input[type=text]:focus, #Container form input[type=password]:focus {
+            outline: 1px solid rgba(10, 84, 140, 0.35);
+            -moz-transition: all 100ms ease-in-out;
+            -o-transition: all 100ms ease-in-out;
+            -webkit-transition: all 100ms ease-in-out;
+            transition: all 100ms ease-in-out;
+        }
+
+        #Container form input[type=text]:focus, #Container form input[type=password]:focus {
+            border: 1px solid rgba(0,0,0,.6);
+        }
+
+    #Container form #logins {
+        width: 100%;
+        border: 0px solid rgba(51, 51, 51, 0.37);
+        border-radius: 0px;
+    }
+
+    #Container #vali {
+        cursor: pointer;
+    }
+
+        #Container #vali a:hover {
+            text-decoration: none;
+            color: #808080;
+        }
+
+footer#Footer {
+    background: rgba(0, 0, 0, 0.55);
+    height: 35px;
+    width: 100%;
+    color: #fff;
+    z-index: 9999;
+}
+
+    footer#Footer > article #Visitar img {
+        width: 10%;
+    }
+
+    footer#Footer > article #Visitar {
+        font-size: 1em;
+        text-align: left;
+        margin-top: 8px;
+        margin-left: 10px;
+    }
+
+        footer#Footer > article #Visitar a {
+            color: #0a548c;
+            text-decoration: underline;
+        }
+
+    footer#Footer > article #Footer-Pangea {
+        font-size: .9em;
+        text-align: right;
+        position: absolute;
+        right: 0%;
+        top: 50%;
+        transform: translate(-10%, -50%);
+        -webkit-transform: translate(-10%, -50%);
+    }
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors ul > li {
+    list-style: none;
+    text-align: left;
+    margin-left: -40px;
+}
+
+.field-validation-error {
+    color: #e81123;
+    font-weight: 300;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-errors {
+    color: #e81123;
+    font-weight: 300;
+    font-size: 1.1em;
+    cursor: text;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+#Fondo {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -40px;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    background: url(img/img-oficina_banner.jpg) no-repeat;
+    background-size: cover;
+    z-index: 0;
+    overflow: hidden;
+}
+/*Responsive*/
+@media screen and (max-width:950px) {
+    #Container {
+        width: 50%;
+    }
+
+    #Footer#Footer > article #Visitar {
+        float: left;
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width:800px) {
+    #Container {
+        width: 100%;
+        height: 350px;
+        border: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    #Fondo {
+        position: absolute;
+        width: auto;
+        height: auto;
+        background: url(img/img-oficina_banner.jpg) no-repeat;
+        background-size: cover;
+        z-index: 0;
+        overflow-y: hidden;
+        padding-bottom: 0px !important;
+        border: 0px !important;
+    }
+}
+
+@media screen and (max-width:600px) {
+    #Container {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:484px) {
+    #Footer#Footer > article #Visitar {
+        /*display: none;*/
+    }
+
+    footer#Footer > article #Visitar img {
+        width: 30%;
+    }
+
+    #Footer#Footer > article #Footer-Pangea p {
+        text-align: center;
+        margin-left: 20px;
+    }
+
+    /*#video {
+        display: none;
+    }*/
+
+    #Container {
+        border: 0;
+        width: 90%;
+    }
+
+        #Container form input[type=text], input[type=password] {
+            border-bottom: 1px solid #808080;
+            background: none;
+        }
+
+    #Fondo {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -40px;
+        bottom: -40px;
+        width: auto;
+        height: auto;
+        background: url(img/img-oficina_banner.jpg) no-repeat;
+        background-size: cover;
+        z-index: 0;
+        overflow: hidden;
+    }
+}
+
+@media screen and (max-wdith:410px) {
+
+    #Container form input[type=text], input[type=password] {
+        border-bottom: 1px solid #808080;
+    }
+}
+
+@media screen and (min-width:1366px) {
+    #Fondo {
+        position: absolute;
+        width: auto;
+        height: auto;
+        background: url(img/img-oficina_banner.jpg) no-repeat;
+        background-size: cover;
+        -webkit-filter: opacity(82%);
+        z-index: 0;
+        overflow: hidden;
+    }
+}
+
+@media only screen and (min-width : 1280px) {
+    /*#Container{
+        height:auto;
+        max-height:800px;
+        width:30%;
+    }*/
+    #Container form input[type=text], #Container form input[type=password] {
+        margin-bottom: 20px;
+    }
+
+    #Fondo {
+        position: absolute;
+        width: auto;
+        height: auto;
+        background: url(img/img-oficina_banner.jpg) no-repeat;
+        background-size: cover;
+        z-index: 0;
+        overflow: hidden;
+    }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+    #Fondo {
+        position: absolute;
+        width: auto;
+        height: auto;
+        background: url(img/img-oficina_banner.jpg) no-repeat;
+        background-size: cover;
+        -webkit-filter: opacity(82%);
+        z-index: 0;
+        overflow: hidden;
+    }
+}

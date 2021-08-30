@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "NuevoProyecto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-left:30px;">
+    <h2>Nuevo Proyecto</h2>
+    <hr />
+    <form id="formNuevo" name="formNuevo" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <div class="col-md-2"><label>Nombre de proyecto</label></div>
+                    <div class="col-md-6"><input placeholder="" autocomplete="off" type="text" name="nombre" style="height:25px; width: 100% !important;" id="nombre" value="" class="form-control form-control-user" /></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <div class="col-md-2 titulos"><label>Descripción</label></div>
+                    <div class="col-md-6"><textarea class="form-control form-control-user" placeholder="Agregue una descripción..." name="Observaciones" id="Observaciones" autocomplete="off" style="width:100%" rows="5"></textarea></div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+    
+    <a href="javascript:EnviarDatos();" class="btn btn-primary btn-user btn-block" style="width:150px">
+        Guardar
+    </a>
+</div>
+
+<script>
+
+    function EnviarDatos() {
+       
+        var formdata = new FormData(); //FormData object
+        Guardar();
+
+    }
+
+    function Guardar() {
+        debugger
+        var formData = new FormData(document.getElementById("formNuevo"));
+
+        $.ajax({
+            type: "POST",
+            url: "/Proyecto/Guardar_Proyecto",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (Data) {
+                if (Data.Guardar == "Hecho") {
+                    alert("Datos guardados correctamente!");
+                    location.href = "/Proyecto/Proyecto";
+                }
+                else {
+                    alert("Error!");
+                }
+            },
+            error: function (error) {
+                alert("Algo salio mal");
+            }
+        });
+    }
+</script>

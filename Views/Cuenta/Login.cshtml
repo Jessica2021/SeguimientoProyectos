@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<link href="~/Content/css/Login.css" rel="stylesheet" />
+<script src="~/Content/bootstrap/js/jquery.min.js"></script>
+<script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+<!-- Notificacion -->
+<script type="text/javascript" src="~/Content/noty/jquery.noty.js"></script>
+<script type="text/javascript" src="~/Content/noty/layouts/bottomRight.js"></script>
+<script type="text/javascript" src="~/Content/noty/themes/default.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!-- DataTables -->
+<script src="~/Content/Datatable/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/Datatable/DataTables-1.10.18/js/dataTables.bootstrap.min.js"></script>
+<!-- Validate -->
+<script src="~/Content/jquery.validate.min.js"></script>
+<!-- Notificacion -->
+<script type="text/javascript" src="~/Content/noty/jquery.noty.js"></script>
+<script type="text/javascript" src="~/Content/noty/layouts/bottomRight.js"></script>
+<script type="text/javascript" src="~/Content/noty/themes/default.js"></script>
+<!--datetimepicker-->
+<script src="~/Content/datetimepicker/jquery.datetimepicker.full.min.js"></script>
+<!--mask-->
+<script src="~/Content/mask/jquery.mask.min.js"></script>
+<!--drang and drop-->
+<script src="~/Content/jquery-ui.js"></script>
+<script src="~/Content/plugins/jquery-ui/jquery-ui-1.10.4.custom.min.js"></script>
+<!-- select2 -->
+<script src="~/Content/Select2 4.0.5/js/select2.js"></script>
+<!-- SWEET ALERT -->
+<script src="~/Content/SweetAlert2/sweetalert2.js"></script>
+<script src="~/Content/SweetAlert2/sweetalert2.min.js"></script>
+
+@*<script src="~/Content/BorrarCaheCSS.min.js"></script>*@
+<!-- graficas-->
+<script src="~/Content/HighChart/highcharts.js"></script>
+<script src="~/Content/HighChart/drilldown.js"></script>
+<!-- calendario-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+<script src="~/Content/fullcalendar/fullcalendar.min.js"></script>
+<!--UTIL-->
+<script src="~/Content/Util.js"></script>
+
+<style>
+    .Myboton {
+        border-radius: 20px;
+        border: 1px solid #1f0462;
+        background-color: #3c6bbf;
+        color: #FFFFFF;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .Myboton:active {
+        transform: scale(0.95);
+    }
+
+    .Myboton:focus {
+        outline: none;
+    }
+
+    .Myboton.ghost {
+        background-color: transparent;
+        border-color: #FFFFFF;
+    }
+
+</style>
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form id="formCrear" name="formCrear" method="post">
+            <h1>Create Account</h1>
+            <div class="social-container">
+            </div>
+            <input type="text" name="Nombre" id="Nombre" placeholder="Nombre" autocomplete="off" />
+            <input type="text" name="Usuario" id="Usuario" placeholder="Usuario" autocomplete="off" />
+            <input type="password" name="Contraseña" id="Contraseña" placeholder="Contraseña" />
+            <a href="javascript:Guardar();" class="Myboton">
+                Crear cuenta
+            </a>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form id="formIniciar" name="formIniciar" method="post">
+            <h1>Iniciar Sesión</h1>
+            <div class="social-container">
+
+            </div>
+            <input type="text" id="UsuarioSs" name="UsuarioSs" placeholder="Usuario" autocomplete="off" />
+            <input type="password" id="ContraseñaSs" name="ContraseñaSs" placeholder="Contraseña" autocomplete="off" />
+            <a href="#"></a>
+            <a href="javascript:Logear();" class="Myboton" >
+                Iniciar Sesión
+            </a>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Bienvenido</h1>
+                <p>Inicia sesión con tus datos</p>
+                <button class="ghost" id="signIn">Iniciar Sesión</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Crear cuenta</h1>
+                <p>Aun no estas registrado?</p>
+                <button class="ghost" id="Registrarse">Registrate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    function Logear() {
+        debugger
+        var formData = new FormData(document.getElementById("formIniciar"));
+
+        $.ajax({
+            type: "POST",
+            url: "/Cuenta/Iniciar_Sesion",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (Data) {
+                if (Data.Guardar == "Hecho") {
+                    //alert("Accediendo");
+                    location.href = "/Proyecto/Proyecto";
+                }
+                else {
+                    alert("Usuario y/o ocntraseña incorrectas");
+                }
+            },
+            error: function (error) {
+                alert("Algo salio mal");
+                swal("Ups...", "Algo salio mal", "warning");
+            }
+        });
+    }
+</script>
+<script>
+
+   
+    function Guardar() {
+        debugger
+        var formData = new FormData(document.getElementById("formCrear"));
+
+        $.ajax({
+            type: "POST",
+            url: "/Cuenta/Guardar_Usuario",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (Data) {
+                alert("Tu cuenta a sido registrada exitosamente");
+                
+            },
+            error: function (error) {
+                alert("Algo salio mal");
+            }
+        });
+    }
+</script>
+<script>
+    const RegistrarseButton = document.getElementById('Registrarse');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    RegistrarseButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>

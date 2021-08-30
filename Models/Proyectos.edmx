@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ProyectosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Compañia">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Historias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descipcion" Type="text" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="RowIDProyecto" Type="int" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descipcion" Type="text" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="varchar" MaxLength="50" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="RowIDHistorias" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="500" />
+          <Property Name="Compañia" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaCompañias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_ListaCompañias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaHistorias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_ListaHistorias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descipcion" Type="text" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="RowIDProyecto" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaProyectos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_ListaProyectos">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descripcion" Type="text" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaTikets' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_ListaTikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Descipcion" Type="text" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="Activo" Type="varchar" MaxLength="50" />
+          <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="RowIDHistorias" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="vw_ListaUsuarios">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="500" />
+          <Property Name="Compañia" Type="int" />
+          <Property Name="NombreCompañia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Sp_Historias_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="text" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="datetime" Mode="In" />
+          <Parameter Name="RowIDProyecto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_Proyecto_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="text" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="Sp_Tikets_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="text" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+          <Parameter Name="Activo" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="FechaCreacion" Type="datetime" Mode="In" />
+          <Parameter Name="RowIDHistoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_Usuario_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contraseña" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProyectosModelStoreContainer">
+          <EntitySet Name="Compañia" EntityType="Self.Compañia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Historias" EntityType="Self.Historias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyecto" EntityType="Self.Proyecto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tikets" EntityType="Self.Tikets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_ListaCompañias" EntityType="Self.vw_ListaCompañias" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ListaCompañias].[RowID] AS [RowID], 
+    [vw_ListaCompañias].[Nombre] AS [Nombre]
+    FROM [dbo].[vw_ListaCompañias] AS [vw_ListaCompañias]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ListaHistorias" EntityType="Self.vw_ListaHistorias" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ListaHistorias].[RowID] AS [RowID], 
+    [vw_ListaHistorias].[Nombre] AS [Nombre], 
+    [vw_ListaHistorias].[Descipcion] AS [Descipcion], 
+    [vw_ListaHistorias].[UsuarioCreacion] AS [UsuarioCreacion], 
+    [vw_ListaHistorias].[FechaCreacion] AS [FechaCreacion], 
+    [vw_ListaHistorias].[RowIDProyecto] AS [RowIDProyecto]
+    FROM [dbo].[vw_ListaHistorias] AS [vw_ListaHistorias]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ListaProyectos" EntityType="Self.vw_ListaProyectos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ListaProyectos].[RowID] AS [RowID], 
+    [vw_ListaProyectos].[Nombre] AS [Nombre], 
+    [vw_ListaProyectos].[Descripcion] AS [Descripcion], 
+    [vw_ListaProyectos].[UsuarioCreacion] AS [UsuarioCreacion], 
+    [vw_ListaProyectos].[FechaCreacion] AS [FechaCreacion]
+    FROM [dbo].[vw_ListaProyectos] AS [vw_ListaProyectos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ListaTikets" EntityType="Self.vw_ListaTikets" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ListaTikets].[RowID] AS [RowID], 
+    [vw_ListaTikets].[Nombre] AS [Nombre], 
+    [vw_ListaTikets].[Descipcion] AS [Descipcion], 
+    [vw_ListaTikets].[Estado] AS [Estado], 
+    [vw_ListaTikets].[Activo] AS [Activo], 
+    [vw_ListaTikets].[UsuarioCreacion] AS [UsuarioCreacion], 
+    [vw_ListaTikets].[FechaCreacion] AS [FechaCreacion], 
+    [vw_ListaTikets].[RowIDHistorias] AS [RowIDHistorias]
+    FROM [dbo].[vw_ListaTikets] AS [vw_ListaTikets]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ListaUsuarios" EntityType="Self.vw_ListaUsuarios" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ListaUsuarios].[RowID] AS [RowID], 
+    [vw_ListaUsuarios].[Nombre] AS [Nombre], 
+    [vw_ListaUsuarios].[Usuario] AS [Usuario], 
+    [vw_ListaUsuarios].[Contraseña] AS [Contraseña], 
+    [vw_ListaUsuarios].[Compañia] AS [Compañia], 
+    [vw_ListaUsuarios].[NombreCompañia] AS [NombreCompañia]
+    FROM [dbo].[vw_ListaUsuarios] AS [vw_ListaUsuarios]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ProyectosEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="Sp_Usuario_Create">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contraseña" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Proyecto_Create">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Historias_Create">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="RowIDProyecto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_Tikets_Create">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+            <Parameter Name="Activo" Mode="In" Type="String" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="RowIDHistoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Compañia" EntityType="ProyectosModel.Compañia" />
+          <EntitySet Name="Historias" EntityType="ProyectosModel.Historias" />
+          <EntitySet Name="Proyecto" EntityType="ProyectosModel.Proyecto" />
+          <EntitySet Name="Tikets" EntityType="ProyectosModel.Tikets" />
+          <EntitySet Name="Usuarios" EntityType="ProyectosModel.Usuarios" />
+          <EntitySet Name="vw_ListaHistorias" EntityType="ProyectosModel.vw_ListaHistorias" />
+          <EntitySet Name="vw_ListaProyectos" EntityType="ProyectosModel.vw_ListaProyectos" />
+          <EntitySet Name="vw_ListaTikets" EntityType="ProyectosModel.vw_ListaTikets" />
+          <EntitySet Name="vw_ListaUsuarios" EntityType="ProyectosModel.vw_ListaUsuarios" />
+          <EntitySet Name="vw_ListaCompañias" EntityType="ProyectosModel.vw_ListaCompañias" />
+        </EntityContainer>
+        <EntityType Name="Compañia">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Historias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDProyecto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Proyecto">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Tikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDHistorias" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Compañia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_ListaHistorias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDProyecto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_ListaProyectos">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_ListaTikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDHistorias" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_ListaUsuarios">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Compañia" Type="Int32" />
+          <Property Name="NombreCompañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_ListaCompañias">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectosModelStoreContainer" CdmEntityContainer="ProyectosEntities">
+          <FunctionImportMapping FunctionImportName="Sp_Usuario_Create" FunctionName="ProyectosModel.Store.Sp_Usuario_Create" />
+          <FunctionImportMapping FunctionImportName="Sp_Proyecto_Create" FunctionName="ProyectosModel.Store.Sp_Proyecto_Create" />
+          <FunctionImportMapping FunctionImportName="Sp_Historias_Create" FunctionName="ProyectosModel.Store.Sp_Historias_Create" />
+          <FunctionImportMapping FunctionImportName="Sp_Tikets_Create" FunctionName="ProyectosModel.Store.Sp_Tikets_Create" />
+          <EntitySetMapping Name="Compañia">
+            <EntityTypeMapping TypeName="ProyectosModel.Compañia">
+              <MappingFragment StoreEntitySet="Compañia">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historias">
+            <EntityTypeMapping TypeName="ProyectosModel.Historias">
+              <MappingFragment StoreEntitySet="Historias">
+                <ScalarProperty Name="RowIDProyecto" ColumnName="RowIDProyecto" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyecto">
+            <EntityTypeMapping TypeName="ProyectosModel.Proyecto">
+              <MappingFragment StoreEntitySet="Proyecto">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tikets">
+            <EntityTypeMapping TypeName="ProyectosModel.Tikets">
+              <MappingFragment StoreEntitySet="Tikets">
+                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ProyectosModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaHistorias">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaHistorias">
+              <MappingFragment StoreEntitySet="vw_ListaHistorias">
+                <ScalarProperty Name="RowIDProyecto" ColumnName="RowIDProyecto" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaProyectos">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaProyectos">
+              <MappingFragment StoreEntitySet="vw_ListaProyectos">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaTikets">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaTikets">
+              <MappingFragment StoreEntitySet="vw_ListaTikets">
+                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaUsuarios">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaUsuarios">
+              <MappingFragment StoreEntitySet="vw_ListaUsuarios">
+                <ScalarProperty Name="NombreCompañia" ColumnName="NombreCompañia" />
+                <ScalarProperty Name="Compañia" ColumnName="Compañia" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaCompañias">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaCompañias">
+              <MappingFragment StoreEntitySet="vw_ListaCompañias">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

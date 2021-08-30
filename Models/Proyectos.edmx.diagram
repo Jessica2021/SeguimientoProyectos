@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b2f814e46e8844d99c400dbaf0e612c5" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ProyectosModel.Compañia" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProyectosModel.Historias" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProyectosModel.Proyecto" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ProyectosModel.Tikets" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ProyectosModel.Usuarios" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProyectosModel.vw_ListaHistorias" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ProyectosModel.vw_ListaProyectos" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ProyectosModel.vw_ListaTikets" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="ProyectosModel.vw_ListaUsuarios" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="ProyectosModel.vw_ListaCompañias" Width="1.5" PointX="3.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
