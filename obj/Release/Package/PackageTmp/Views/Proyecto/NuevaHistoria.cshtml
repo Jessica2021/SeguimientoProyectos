@@ -1,0 +1,78 @@
+﻿
+@model ProyectoS.Models.vw_ListaHistorias
+@{
+    ViewBag.Title = "Nueva Historia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-left:30px;">
+    <h2>Nuevo Proyecto</h2>
+    <hr />
+   
+    <form id="formNuevo" name="formNuevo" method="post">
+        <input type="hidden" name="RowIDHistoria" id="RowIDHistoria" value="@Model.RowID" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <div class="col-md-4"><label>Proyecto</label></div>
+                    <div class="col-md-6"><input placeholder="" autocomplete="off" type="text" name="proyecto" style="height:25px; width: 100% !important;" id="proyecto" value="@Model.Nombre" class="form-control form-control-user" disabled /></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <div class="col-md-4"><label>Nombre de Historia</label></div>
+                    <div class="col-md-6"><input placeholder="" autocomplete="off" type="text" name="nombre" style="height:25px; width: 100% !important;" id="nombre" value="" class="form-control form-control-user" /></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <div class="col-md-2 titulos"><label>Descripción</label></div>
+                    <div class="col-md-9"><textarea class="form-control form-control-user" placeholder="Agregue una descripción..." name="Observaciones" id="Observaciones" autocomplete="off" style="width:100%" rows="5"></textarea></div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+    <a href="javascript:EnviarDatos();" class="btn btn-primary btn-user btn-block" style="width:150px">
+        Guardar
+    </a>
+</div>
+
+<script>
+
+    function EnviarDatos() {
+
+        var formdata = new FormData(); //FormData object
+        Guardar();
+
+    }
+
+    function Guardar() {
+        debugger
+        var formData = new FormData(document.getElementById("formNuevo"));
+
+        $.ajax({
+            type: "POST",
+            url: "/Proyecto/Guardar_Historia",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (Data) {
+                if (Data.Guardar == "Hecho") {
+                    alert("Datos guardados correctamente!");
+                    location.href = "/Proyecto/Historia";
+                }
+                else {
+                    alert("Error!");
+                }
+            },
+            error: function (error) {
+                alert("Algo salio mal");
+            }
+        });
+    }
+</script>

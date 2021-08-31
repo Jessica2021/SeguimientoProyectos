@@ -1,0 +1,94 @@
+﻿@media screen and (max-width: 480px) {
+    #cssmenu ul > li.has-sub {
+        width: 10%;
+        background-size: 100%;
+        display: inline-flex;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+    }
+
+        #cssmenu ul > li.has-sub a span {
+            display: none;
+        }
+
+    .subopcionesmenu {
+        margin-top: -80px;
+        -moz-transition: all 100ms ease-in-out;
+        -o-transition: all 100ms ease-in-out;
+        -webkit-transition: all 100ms ease-in-out;
+        transition: all 100ms ease-in-out;
+        width: 70px;
+    }
+
+    #subopcionesmenu {
+        margin-top: 13.5%;
+        WIDTH: 41%;
+        height: 75%;
+    }
+}
+
+
+
+
+
+@media screen and (max-width:375px) {
+    #subopcionesmenu {
+        margin-top: 14.5%;
+        WIDTH: 45%;
+        height: 82%;
+    }
+}
+
+@media screen and (max-width:360px) {
+    #subopcionesmenu {
+        margin-top: 16%;
+        WIDTH: 47%;
+        height: 86%;
+    }
+}
+
+
+@media screen and (max-width:320px) {
+    #subopcionesmenu {
+        margin-top: 29%;
+        WIDTH: 46%;
+        height: 78%;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .navbar-custom-menu .navbar-right {
+        background: #304a6d;
+        width: 450px;
+        padding-left: 101px;
+        padding-bottom: 4px;
+        margin-top: -8px;
+        margin-bottom: 4px;
+    }
+}
+
+
+@media screen and (max-width:360px) {
+    .navbar-custom-menu .navbar-right {
+        background: #304a6d;
+        width: 450px;
+        padding-left: 112px;
+        padding-bottom: 4px;
+        margin-top: -8px;
+        margin-bottom: 4px;
+    }
+}
+
+
+@media screen and (max-width:375px) {
+    .navbar-custom-menu .navbar-right {
+        background: #304a6d;
+        width: 450px;
+        padding-left: 49px;
+        padding-bottom: 4px;
+        margin-top: -8px;
+        margin-bottom: 4px;
+    }
+}

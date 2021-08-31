@@ -4,15 +4,6 @@
     <FunctionImportMapping FunctionImportName="Sp_Usuario_Create" FunctionName="ProyectosModel.Store.Sp_Usuario_Create" />
     <FunctionImportMapping FunctionImportName="Sp_Proyecto_Create" FunctionName="ProyectosModel.Store.Sp_Proyecto_Create" />
     <FunctionImportMapping FunctionImportName="Sp_Historias_Create" FunctionName="ProyectosModel.Store.Sp_Historias_Create" />
-    <FunctionImportMapping FunctionImportName="Sp_Tikets_Create" FunctionName="ProyectosModel.Store.Sp_Tikets_Create" />
-    <EntitySetMapping Name="Compañia">
-      <EntityTypeMapping TypeName="ProyectosModel.Compañia">
-        <MappingFragment StoreEntitySet="Compañia">
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="RowID" ColumnName="RowID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Historias">
       <EntityTypeMapping TypeName="ProyectosModel.Historias">
         <MappingFragment StoreEntitySet="Historias">
@@ -31,20 +22,6 @@
           <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
           <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="RowID" ColumnName="RowID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tikets">
-      <EntityTypeMapping TypeName="ProyectosModel.Tikets">
-        <MappingFragment StoreEntitySet="Tikets">
-          <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
-          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-          <ScalarProperty Name="Activo" ColumnName="Activo" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="RowID" ColumnName="RowID" />
         </MappingFragment>
@@ -84,20 +61,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_ListaTikets">
-      <EntityTypeMapping TypeName="ProyectosModel.vw_ListaTikets">
-        <MappingFragment StoreEntitySet="vw_ListaTikets">
-          <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
-          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-          <ScalarProperty Name="Activo" ColumnName="Activo" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="RowID" ColumnName="RowID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="vw_ListaUsuarios">
       <EntityTypeMapping TypeName="ProyectosModel.vw_ListaUsuarios">
         <MappingFragment StoreEntitySet="vw_ListaUsuarios">
@@ -110,5 +73,57 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Compañia">
+      <EntityTypeMapping TypeName="ProyectosModel.Compañia">
+        <MappingFragment StoreEntitySet="Compañia">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tikets">
+      <EntityTypeMapping TypeName="ProyectosModel.Tikets">
+        <MappingFragment StoreEntitySet="Tikets">
+          <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ListaCompañias">
+      <EntityTypeMapping TypeName="ProyectosModel.vw_ListaCompañias">
+        <MappingFragment StoreEntitySet="vw_ListaCompañias">
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Nit" ColumnName="Nit" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_ListaTikets">
+      <EntityTypeMapping TypeName="ProyectosModel.vw_ListaTikets">
+        <MappingFragment StoreEntitySet="vw_ListaTikets">
+          <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="RowID" ColumnName="RowID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Sp_Tikets_Create" FunctionName="ProyectosModel.Store.Sp_Tikets_Create" />
+    <FunctionImportMapping FunctionImportName="Sp_Tikets_Update" FunctionName="ProyectosModel.Store.Sp_Tikets_Update" />
   </EntityContainerMapping>
 </Mapping>

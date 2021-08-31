@@ -18,7 +18,6 @@ namespace ProyectoS.Models
         public string Nombre { get; set; }
         public string Descipcion { get; set; }
         public string Estado { get; set; }
-        public string Activo { get; set; }
         public string UsuarioCreacion { get; set; }
         public Nullable<System.DateTime> FechaCreacion { get; set; }
         public Nullable<int> RowIDHistorias { get; set; }

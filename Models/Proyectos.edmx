@@ -11,6 +11,10 @@
           </Key>
           <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Nit" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Historias">
           <Key>
@@ -41,7 +45,6 @@
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
           <Property Name="Descipcion" Type="text" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
-          <Property Name="Activo" Type="varchar" MaxLength="50" />
           <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="RowIDHistorias" Type="int" />
@@ -64,6 +67,10 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaCompañias' no tiene d
           </Key>
           <Property Name="RowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Nit" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaHistorias' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -100,7 +107,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaTikets' no tiene defin
           <Property Name="Nombre" Type="varchar" MaxLength="200" />
           <Property Name="Descipcion" Type="text" />
           <Property Name="Estado" Type="varchar" MaxLength="50" />
-          <Property Name="Activo" Type="varchar" MaxLength="50" />
           <Property Name="UsuarioCreacion" Type="varchar" MaxLength="50" />
           <Property Name="FechaCreacion" Type="datetime" />
           <Property Name="RowIDHistorias" Type="int" />
@@ -135,10 +141,15 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="Descripcion" Type="text" Mode="In" />
           <Parameter Name="Estado" Type="varchar" Mode="In" />
-          <Parameter Name="Activo" Type="varchar" Mode="In" />
           <Parameter Name="Usuario" Type="varchar" Mode="In" />
           <Parameter Name="FechaCreacion" Type="datetime" Mode="In" />
           <Parameter Name="RowIDHistoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_Tikets_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RowID" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="text" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Sp_Usuario_Create" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
@@ -154,7 +165,11 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <EntitySet Name="vw_ListaCompañias" EntityType="Self.vw_ListaCompañias" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_ListaCompañias].[RowID] AS [RowID], 
-    [vw_ListaCompañias].[Nombre] AS [Nombre]
+    [vw_ListaCompañias].[Nombre] AS [Nombre], 
+    [vw_ListaCompañias].[Nit] AS [Nit], 
+    [vw_ListaCompañias].[Telefono] AS [Telefono], 
+    [vw_ListaCompañias].[Direccion] AS [Direccion], 
+    [vw_ListaCompañias].[Correo] AS [Correo]
     FROM [dbo].[vw_ListaCompañias] AS [vw_ListaCompañias]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_ListaHistorias" EntityType="Self.vw_ListaHistorias" store:Type="Views" store:Schema="dbo">
@@ -182,7 +197,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
     [vw_ListaTikets].[Nombre] AS [Nombre], 
     [vw_ListaTikets].[Descipcion] AS [Descipcion], 
     [vw_ListaTikets].[Estado] AS [Estado], 
-    [vw_ListaTikets].[Activo] AS [Activo], 
     [vw_ListaTikets].[UsuarioCreacion] AS [UsuarioCreacion], 
     [vw_ListaTikets].[FechaCreacion] AS [FechaCreacion], 
     [vw_ListaTikets].[RowIDHistorias] AS [RowIDHistorias]
@@ -222,33 +236,31 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
             <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
             <Parameter Name="RowIDProyecto" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Historias" EntityType="ProyectosModel.Historias" />
+          <EntitySet Name="Proyecto" EntityType="ProyectosModel.Proyecto" />
+          <EntitySet Name="Usuarios" EntityType="ProyectosModel.Usuarios" />
+          <EntitySet Name="vw_ListaHistorias" EntityType="ProyectosModel.vw_ListaHistorias" />
+          <EntitySet Name="vw_ListaProyectos" EntityType="ProyectosModel.vw_ListaProyectos" />
+          <EntitySet Name="vw_ListaUsuarios" EntityType="ProyectosModel.vw_ListaUsuarios" />
+          <EntitySet Name="Compañia" EntityType="ProyectosModel.Compañia" />
+          <EntitySet Name="Tikets" EntityType="ProyectosModel.Tikets" />
+          <EntitySet Name="vw_ListaCompañias" EntityType="ProyectosModel.vw_ListaCompañias" />
+          <EntitySet Name="vw_ListaTikets" EntityType="ProyectosModel.vw_ListaTikets" />
           <FunctionImport Name="Sp_Tikets_Create">
             <Parameter Name="Nombre" Mode="In" Type="String" />
             <Parameter Name="Descripcion" Mode="In" Type="String" />
             <Parameter Name="Estado" Mode="In" Type="String" />
-            <Parameter Name="Activo" Mode="In" Type="String" />
             <Parameter Name="Usuario" Mode="In" Type="String" />
             <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
             <Parameter Name="RowIDHistoria" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="Compañia" EntityType="ProyectosModel.Compañia" />
-          <EntitySet Name="Historias" EntityType="ProyectosModel.Historias" />
-          <EntitySet Name="Proyecto" EntityType="ProyectosModel.Proyecto" />
-          <EntitySet Name="Tikets" EntityType="ProyectosModel.Tikets" />
-          <EntitySet Name="Usuarios" EntityType="ProyectosModel.Usuarios" />
-          <EntitySet Name="vw_ListaHistorias" EntityType="ProyectosModel.vw_ListaHistorias" />
-          <EntitySet Name="vw_ListaProyectos" EntityType="ProyectosModel.vw_ListaProyectos" />
-          <EntitySet Name="vw_ListaTikets" EntityType="ProyectosModel.vw_ListaTikets" />
-          <EntitySet Name="vw_ListaUsuarios" EntityType="ProyectosModel.vw_ListaUsuarios" />
-          <EntitySet Name="vw_ListaCompañias" EntityType="ProyectosModel.vw_ListaCompañias" />
+          <FunctionImport Name="Sp_Tikets_Update">
+            <Parameter Name="RowID" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <EntityType Name="Compañia">
-          <Key>
-            <PropertyRef Name="RowID" />
-          </Key>
-          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Historias">
           <Key>
             <PropertyRef Name="RowID" />
@@ -269,19 +281,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="Tikets">
-          <Key>
-            <PropertyRef Name="RowID" />
-          </Key>
-          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="RowIDHistorias" Type="Int32" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -314,19 +313,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
         </EntityType>
-        <EntityType Name="vw_ListaTikets">
-          <Key>
-            <PropertyRef Name="RowID" />
-          </Key>
-          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="RowIDHistorias" Type="Int32" />
-        </EntityType>
         <EntityType Name="vw_ListaUsuarios">
           <Key>
             <PropertyRef Name="RowID" />
@@ -338,12 +324,51 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <Property Name="Compañia" Type="Int32" />
           <Property Name="NombreCompañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Compañia">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDHistorias" Type="Int32" />
+        </EntityType>
         <EntityType Name="vw_ListaCompañias">
           <Key>
             <PropertyRef Name="RowID" />
           </Key>
           <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_ListaTikets">
+          <Key>
+            <PropertyRef Name="RowID" />
+          </Key>
+          <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="RowIDHistorias" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -354,15 +379,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
           <FunctionImportMapping FunctionImportName="Sp_Usuario_Create" FunctionName="ProyectosModel.Store.Sp_Usuario_Create" />
           <FunctionImportMapping FunctionImportName="Sp_Proyecto_Create" FunctionName="ProyectosModel.Store.Sp_Proyecto_Create" />
           <FunctionImportMapping FunctionImportName="Sp_Historias_Create" FunctionName="ProyectosModel.Store.Sp_Historias_Create" />
-          <FunctionImportMapping FunctionImportName="Sp_Tikets_Create" FunctionName="ProyectosModel.Store.Sp_Tikets_Create" />
-          <EntitySetMapping Name="Compañia">
-            <EntityTypeMapping TypeName="ProyectosModel.Compañia">
-              <MappingFragment StoreEntitySet="Compañia">
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Historias">
             <EntityTypeMapping TypeName="ProyectosModel.Historias">
               <MappingFragment StoreEntitySet="Historias">
@@ -381,20 +397,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tikets">
-            <EntityTypeMapping TypeName="ProyectosModel.Tikets">
-              <MappingFragment StoreEntitySet="Tikets">
-                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RowID" ColumnName="RowID" />
               </MappingFragment>
@@ -434,20 +436,6 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_ListaTikets">
-            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaTikets">
-              <MappingFragment StoreEntitySet="vw_ListaTikets">
-                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="Activo" ColumnName="Activo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="RowID" ColumnName="RowID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vw_ListaUsuarios">
             <EntityTypeMapping TypeName="ProyectosModel.vw_ListaUsuarios">
               <MappingFragment StoreEntitySet="vw_ListaUsuarios">
@@ -460,14 +448,58 @@ advertencia 6002: La tabla o vista 'Proyectos.dbo.vw_ListaUsuarios' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_ListaCompañias">
-            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaCompañias">
-              <MappingFragment StoreEntitySet="vw_ListaCompañias">
+          <EntitySetMapping Name="Compañia">
+            <EntityTypeMapping TypeName="ProyectosModel.Compañia">
+              <MappingFragment StoreEntitySet="Compañia">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="RowID" ColumnName="RowID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tikets">
+            <EntityTypeMapping TypeName="ProyectosModel.Tikets">
+              <MappingFragment StoreEntitySet="Tikets">
+                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaCompañias">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaCompañias">
+              <MappingFragment StoreEntitySet="vw_ListaCompañias">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nit" ColumnName="Nit" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ListaTikets">
+            <EntityTypeMapping TypeName="ProyectosModel.vw_ListaTikets">
+              <MappingFragment StoreEntitySet="vw_ListaTikets">
+                <ScalarProperty Name="RowIDHistorias" ColumnName="RowIDHistorias" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Descipcion" ColumnName="Descipcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RowID" ColumnName="RowID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Tikets_Create" FunctionName="ProyectosModel.Store.Sp_Tikets_Create" />
+          <FunctionImportMapping FunctionImportName="Sp_Tikets_Update" FunctionName="ProyectosModel.Store.Sp_Tikets_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

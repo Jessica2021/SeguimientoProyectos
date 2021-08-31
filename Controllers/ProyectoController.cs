@@ -137,11 +137,11 @@ namespace ProyectoS.Controllers
         public JsonResult Guardar_Historia()
         {
             #region :: Definición de variables ::
-            int RowIDProyecto = 0;
+            int RowIDHistoria = 0;
 
-            if (!string.IsNullOrEmpty(Request.Params["RowIDProyecto"].Trim()))
+            if (!string.IsNullOrEmpty(Request.Params["RowIDHistoria"].Trim()))
             {
-                RowIDProyecto = int.Parse(Request.Params["RowIDProyecto"]);
+                RowIDHistoria = int.Parse(Request.Params["RowIDHistoria"]);
             }
 
             string nombre = "";
@@ -161,7 +161,7 @@ namespace ProyectoS.Controllers
             try
             {
                 //Guarda 
-                ViewBag.proyecto = db.Sp_Historias_Create(nombre, Observaciones,"Administrador", Fecha, RowIDProyecto);
+                ViewBag.proyecto = db.Sp_Historias_Create(nombre, Observaciones,"Administrador", Fecha, RowIDHistoria);
 
             }
             catch (Exception )
@@ -182,17 +182,18 @@ namespace ProyectoS.Controllers
             ViewBag.ListaTikets = db.vw_ListaTikets.Where(f=>f.RowIDHistorias==RowID).ToList();
             return View();
         }
-        public ActionResult NuevoTiket(int RowID)
+        public ActionResult NuevoTiket(int RowID, int RowIDHi)
         {
-            vw_ListaHistorias obj = new vw_ListaHistorias();
+            vw_ListaTikets obj = new vw_ListaTikets();
+            
 
             if (RowID > 0 )
             {
-                obj = db.vw_ListaHistorias.Where(f => f.RowID == RowID).FirstOrDefault();
+                obj = db.vw_ListaTikets.Where(f => f.RowID == RowID).FirstOrDefault();
                 
             }
 
-
+            ViewBag.ListaHistorias =  db.vw_ListaHistorias.Where(f=>f.RowID==RowIDHi).ToList();
             return View(obj);
         }
 
@@ -202,6 +203,12 @@ namespace ProyectoS.Controllers
         public JsonResult Guardar_Tiket()
         {
             #region :: Definición de variables ::
+            int RowID = 0;
+
+            if (!string.IsNullOrEmpty(Request.Params["RowID"].Trim()))
+            {
+                RowID = int.Parse(Request.Params["RowID"]);
+            }
             int RowIDHistoria = 0;
 
             if (!string.IsNullOrEmpty(Request.Params["RowIDHistoria"].Trim()))
@@ -224,19 +231,25 @@ namespace ProyectoS.Controllers
             {
                 Estado = Request.Params["Estado"];
             }
-            string Activo = "";
-            if (!string.IsNullOrEmpty(Request.Params["Activo"].Trim()))
-            {
-                Activo = Request.Params["Activo"];
-            }
+           
 
             DateTime Fecha = DateTime.Now;
             #endregion
 
             try
             {
-                //Guarda 
-                ViewBag.proyecto = db.Sp_Tikets_Create(nombre, Observaciones, Estado, Activo, "Administrador", Fecha, RowIDHistoria);
+                if (RowID>0)
+                {
+                    //Editar 
+                    ViewBag.proyecto = db.Sp_Tikets_Update(RowID,nombre, Observaciones, Estado);
+
+                }
+                else
+                {
+                    //Guarda 
+                    ViewBag.proyecto = db.Sp_Tikets_Create(nombre, Observaciones, Estado, "Administrador", Fecha, RowIDHistoria);
+
+                }
 
             }
             catch (Exception )

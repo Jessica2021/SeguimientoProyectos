@@ -27,16 +27,16 @@ namespace ProyectoS.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Compañia> Compañia { get; set; }
         public virtual DbSet<Historias> Historias { get; set; }
         public virtual DbSet<Proyecto> Proyecto { get; set; }
-        public virtual DbSet<Tikets> Tikets { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<vw_ListaHistorias> vw_ListaHistorias { get; set; }
         public virtual DbSet<vw_ListaProyectos> vw_ListaProyectos { get; set; }
-        public virtual DbSet<vw_ListaTikets> vw_ListaTikets { get; set; }
         public virtual DbSet<vw_ListaUsuarios> vw_ListaUsuarios { get; set; }
+        public virtual DbSet<Compañia> Compañia { get; set; }
+        public virtual DbSet<Tikets> Tikets { get; set; }
         public virtual DbSet<vw_ListaCompañias> vw_ListaCompañias { get; set; }
+        public virtual DbSet<vw_ListaTikets> vw_ListaTikets { get; set; }
     
         public virtual int Sp_Usuario_Create(string nombre, string usuario, string contraseña)
         {
@@ -101,7 +101,7 @@ namespace ProyectoS.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_Historias_Create", nombreParameter, descripcionParameter, usuarioParameter, fechaCreacionParameter, rowIDProyectoParameter);
         }
     
-        public virtual int Sp_Tikets_Create(string nombre, string descripcion, string estado, string activo, string usuario, Nullable<System.DateTime> fechaCreacion, Nullable<int> rowIDHistoria)
+        public virtual int Sp_Tikets_Create(string nombre, string descripcion, string estado, string usuario, Nullable<System.DateTime> fechaCreacion, Nullable<int> rowIDHistoria)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -115,10 +115,6 @@ namespace ProyectoS.Models
                 new ObjectParameter("Estado", estado) :
                 new ObjectParameter("Estado", typeof(string));
     
-            var activoParameter = activo != null ?
-                new ObjectParameter("Activo", activo) :
-                new ObjectParameter("Activo", typeof(string));
-    
             var usuarioParameter = usuario != null ?
                 new ObjectParameter("Usuario", usuario) :
                 new ObjectParameter("Usuario", typeof(string));
@@ -131,7 +127,28 @@ namespace ProyectoS.Models
                 new ObjectParameter("RowIDHistoria", rowIDHistoria) :
                 new ObjectParameter("RowIDHistoria", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_Tikets_Create", nombreParameter, descripcionParameter, estadoParameter, activoParameter, usuarioParameter, fechaCreacionParameter, rowIDHistoriaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_Tikets_Create", nombreParameter, descripcionParameter, estadoParameter, usuarioParameter, fechaCreacionParameter, rowIDHistoriaParameter);
+        }
+    
+        public virtual int Sp_Tikets_Update(Nullable<int> rowID, string nombre, string descripcion, string estado)
+        {
+            var rowIDParameter = rowID.HasValue ?
+                new ObjectParameter("RowID", rowID) :
+                new ObjectParameter("RowID", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var descripcionParameter = descripcion != null ?
+                new ObjectParameter("Descripcion", descripcion) :
+                new ObjectParameter("Descripcion", typeof(string));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Sp_Tikets_Update", rowIDParameter, nombreParameter, descripcionParameter, estadoParameter);
         }
     }
 }

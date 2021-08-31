@@ -19,32 +19,31 @@
       <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
       <Parameter Name="RowIDProyecto" Mode="In" Type="Int32" />
     </FunctionImport>
+    <EntitySet Name="Historias" EntityType="ProyectosModel.Historias" />
+    <EntitySet Name="Proyecto" EntityType="ProyectosModel.Proyecto" />
+    <EntitySet Name="Usuarios" EntityType="ProyectosModel.Usuarios" />
+    <EntitySet Name="vw_ListaHistorias" EntityType="ProyectosModel.vw_ListaHistorias" />
+    <EntitySet Name="vw_ListaProyectos" EntityType="ProyectosModel.vw_ListaProyectos" />
+    <EntitySet Name="vw_ListaUsuarios" EntityType="ProyectosModel.vw_ListaUsuarios" />
+    <EntitySet Name="Compañia" EntityType="ProyectosModel.Compañia" />
+    <EntitySet Name="Tikets" EntityType="ProyectosModel.Tikets" />
+    <EntitySet Name="vw_ListaCompañias" EntityType="ProyectosModel.vw_ListaCompañias" />
+    <EntitySet Name="vw_ListaTikets" EntityType="ProyectosModel.vw_ListaTikets" />
     <FunctionImport Name="Sp_Tikets_Create">
       <Parameter Name="Nombre" Mode="In" Type="String" />
       <Parameter Name="Descripcion" Mode="In" Type="String" />
       <Parameter Name="Estado" Mode="In" Type="String" />
-      <Parameter Name="Activo" Mode="In" Type="String" />
       <Parameter Name="Usuario" Mode="In" Type="String" />
       <Parameter Name="FechaCreacion" Mode="In" Type="DateTime" />
       <Parameter Name="RowIDHistoria" Mode="In" Type="Int32" />
     </FunctionImport>
-    <EntitySet Name="Compañia" EntityType="ProyectosModel.Compañia" />
-    <EntitySet Name="Historias" EntityType="ProyectosModel.Historias" />
-    <EntitySet Name="Proyecto" EntityType="ProyectosModel.Proyecto" />
-    <EntitySet Name="Tikets" EntityType="ProyectosModel.Tikets" />
-    <EntitySet Name="Usuarios" EntityType="ProyectosModel.Usuarios" />
-    <EntitySet Name="vw_ListaHistorias" EntityType="ProyectosModel.vw_ListaHistorias" />
-    <EntitySet Name="vw_ListaProyectos" EntityType="ProyectosModel.vw_ListaProyectos" />
-    <EntitySet Name="vw_ListaTikets" EntityType="ProyectosModel.vw_ListaTikets" />
-    <EntitySet Name="vw_ListaUsuarios" EntityType="ProyectosModel.vw_ListaUsuarios" />
+    <FunctionImport Name="Sp_Tikets_Update">
+      <Parameter Name="RowID" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Estado" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
-  <EntityType Name="Compañia">
-    <Key>
-      <PropertyRef Name="RowID" />
-    </Key>
-    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
   <EntityType Name="Historias">
     <Key>
       <PropertyRef Name="RowID" />
@@ -65,19 +64,6 @@
     <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Tikets">
-    <Key>
-      <PropertyRef Name="RowID" />
-    </Key>
-    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-    <Property Name="RowIDHistorias" Type="Int32" />
   </EntityType>
   <EntityType Name="Usuarios">
     <Key>
@@ -110,19 +96,6 @@
     <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="vw_ListaTikets">
-    <Key>
-      <PropertyRef Name="RowID" />
-    </Key>
-    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Activo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
-    <Property Name="RowIDHistorias" Type="Int32" />
-  </EntityType>
   <EntityType Name="vw_ListaUsuarios">
     <Key>
       <PropertyRef Name="RowID" />
@@ -133,5 +106,51 @@
     <Property Name="Contraseña" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Compañia" Type="Int32" />
     <Property Name="NombreCompañia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Compañia">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Tikets">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="RowIDHistorias" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vw_ListaCompañias">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Nit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_ListaTikets">
+    <Key>
+      <PropertyRef Name="RowID" />
+    </Key>
+    <Property Name="RowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descipcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+    <Property Name="RowIDHistorias" Type="Int32" />
   </EntityType>
 </Schema>

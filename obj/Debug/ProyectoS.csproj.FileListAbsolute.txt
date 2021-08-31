@@ -67,3 +67,4 @@ C:\Users\Julieth\source\repos\PRUEBA_2021\ProyectoS\bin\EntityFramework.dll
 C:\Users\Julieth\source\repos\PRUEBA_2021\ProyectoS\bin\EntityFramework.SqlServer.dll
 C:\Users\Julieth\source\repos\PRUEBA_2021\ProyectoS\bin\EntityFramework.xml
 C:\Users\Julieth\source\repos\PRUEBA_2021\ProyectoS\bin\EntityFramework.SqlServer.xml
+C:\Users\Julieth\source\repos\PRUEBA_2021\ProyectoS\obj\Debug\ProyectoS.csprojAssemblyReference.cache

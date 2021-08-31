@@ -26,7 +26,6 @@
                             <th><center>Nombre Tiket</center></th>
                             <th><center>Descripción</center></th>
                             <th><center>Estado</center></th>
-                            <th><center>Activo</center></th>
                             <th><center>Usuario de creación</center></th>
                             <th><center>Fecha de creación</center></th>
 
@@ -36,35 +35,42 @@
                     <tbody>
                         @foreach (ProyectoS.Models.vw_ListaTikets item in ViewBag.ListaTikets)
                         {
-                            <tr>
+                        <tr>
+                            <td style="text-align:center">
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle rowlink" data-toggle="dropdown" href="#" title="Opciones">
+                                        <i class="glyphicon glyphicon-th-list"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" style="text-align:left;">
+
+                                        <li><a class="alink" href="/Proyecto/NuevoTiket?RowID=@item.RowID&RowIDHi=@item.RowIDHistorias"><i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+
+                                    </ul>
+                                </div>
+                            </td>
+
+                            <td style="text-align: center;">
+                                @item.Nombre
+                            </td>
 
 
-                                <td style="text-align: center;">
-                                    @item.Nombre
-                                </td>
+                            <td style="text-align: center;">
+                                @item.Descipcion
 
+                            </td>
+                            <td style="text-align: center;">
+                                @item.Estado
 
-                                <td style="text-align: center;">
-                                    @item.Descipcion
+                            </td>
 
-                                </td>
-                                <td style="text-align: center;">
-                                    @item.Estado
+                            <td style="text-align: center;">
+                                @item.UsuarioCreacion
+                            </td>
 
-                                </td>
-                                <td style="text-align: center;">
-                                    @item.Activo
-
-                                </td>
-
-                                <td style="text-align: center;">
-                                    @item.UsuarioCreacion
-                                </td>
-
-                                <td style="text-align: center;">
-                                    @item.FechaCreacion
-                                </td>
-                            </tr>
+                            <td style="text-align: center;">
+                                @item.FechaCreacion
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
